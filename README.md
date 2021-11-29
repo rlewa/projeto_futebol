@@ -15,4 +15,4 @@ historical_data - https://www.football-data.co.uk/englandm.php
 
 We consider a clean dataframe (.csv file) if its column 'Date' is formated as: 'YYYY-MM-DD'; And both for home and away teams, their names must not be abbreviated. For ex.: 'Man Utd' goes to 'Manchester United'.
 
-Dataframe with historical features (```historical_features``` file) = (7600, 46)
+Dataframe with historical features (```historical_features``` file) = (7980, 46)
