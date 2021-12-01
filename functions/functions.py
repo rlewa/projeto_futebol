@@ -64,10 +64,10 @@ def change_team_name(dataframe: pd.DataFrame) -> pd.DataFrame:
 
   return dataframe
 
-def replaces_ordinal_date(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
+def replaces_ordinal_date_talksport(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
 
   '''
-    Replaces ordinal dates for dates formated as: YYYY-MM-DD
+    Replaces ordinal dates for dates formated as: YYYY-MM-DD to the talksport website dataframe
   
     Input:
       pd.DataFrame: dataframe to be replaced
@@ -82,5 +82,26 @@ def replaces_ordinal_date(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
 
   dataframe[column] = dataframe[column].str.replace('th', '').str.replace('st', '').str.replace('rd', '').str.replace('nd', '')
   dataframe[column] = dataframe[column].apply(lambda dataframe_date: date.isoformat(datetime.strptime(dataframe_date, '%d %B %Y').date()))
+
+  return dataframe
+
+
+def replaces_ordinal_date_worldsoccer(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
+
+  '''
+    Replaces ordinal dates for dates formated as: YYYY-MM-DD to the worldsoccer website dataframe
+  
+    Input:
+      pd.DataFrame: dataframe to be replaced
+      str: date column 
+
+    Return:
+      pd.DataFrame: formated dataframe
+
+    Example:
+      'July 2, 2021' -> '2021-07-02'
+  '''
+
+  dataframe[column] = dataframe[column].apply(lambda dataframe_date: date.isoformat(datetime.strptime(dataframe_date, '%B %d, %Y').date()))
 
   return dataframe
