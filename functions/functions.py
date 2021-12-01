@@ -75,7 +75,8 @@ def replaces_ordinal_date(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
     Return:
       pd.DataFrame: formated dataframe
 
-    Example
+    Example:
+      '2nd July 2021' -> '2021-07-02'
   '''
 
   dataframe[column] = dataframe[column].str.replace('th', '').str.replace('st', '').str.replace('rd', '').str.replace('nd', '')
