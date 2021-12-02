@@ -11,7 +11,7 @@ setuptools.setup(
     description="Impact of news on predicting football matches",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/rlewa/projetofutebol/functions',
+    url='https://github.com/rlewa/projetofutebol',
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
