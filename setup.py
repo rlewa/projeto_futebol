@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="projeto_futebol",
+    name="projetofutebol",
     version="1.0.0",
     author="...",
     author_email="...",
     description="Impact of news on predicting football matches",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/rlewa/projeto_futebol',
+    url='https://github.com/rlewa/projetofutebol',
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
