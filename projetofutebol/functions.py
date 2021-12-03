@@ -1,4 +1,5 @@
 import pandas as pd 
+import numpy as np
 import string
 import nltk
 from nltk import word_tokenize
