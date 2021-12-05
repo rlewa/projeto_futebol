@@ -64,7 +64,7 @@ def change_team_name(dataframe: pd.DataFrame) -> pd.DataFrame:
 
   return dataframe
 
-def replaces_ordinal_date_talksport(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
+def replace_ordinal_date_talksport(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
 
   '''
     Replaces ordinal dates for dates formated as: YYYY-MM-DD to the talksport website dataframe
@@ -89,7 +89,7 @@ def replaces_ordinal_date_talksport(dataframe: pd.DataFrame, column: str) -> pd.
   return dataframe
 
 
-def replaces_ordinal_date_worldsoccer(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
+def replace_ordinal_date_worldsoccer(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
 
   '''
     Replaces ordinal dates for dates formated as: YYYY-MM-DD to the worldsoccer website dataframe
