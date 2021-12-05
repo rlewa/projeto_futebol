@@ -80,7 +80,8 @@ def replaces_ordinal_date_talksport(dataframe: pd.DataFrame, column: str) -> pd.
       '2nd July 2021' -> '2021-07-02'
   '''
 
-  dataframe[column] = dataframe[column].str.replace('th', '').str.replace('st', '').str.replace('rd', '').str.replace('nd', '')
+  dataframe[column] = dataframe[column].str.replace('th', '').str.replace('rd', '').str.replace('nd', '')
+  dataframe[column] = dataframe[column].apply(lambda x: x[x.find('st'):4].replace('st', ''))
   dataframe[column] = dataframe[column].apply(lambda dataframe_date: date.isoformat(datetime.strptime(dataframe_date, '%d %B %Y').date()))
 
   return dataframe
