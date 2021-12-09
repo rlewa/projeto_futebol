@@ -33,7 +33,7 @@ def format_date(dataframe: pd.DataFrame, date_column: str) -> pd.DataFrame:
   dataframe[date_column] = dataframe[date_column].apply(lambda x: str(pd.to_datetime(x, dayfirst=True)).split()[0])
   return dataframe
 
-def replaces_ordinal_date_talksport(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
+def replace_ordinal_date_talksport(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
 
   '''
     Replaces ordinal dates for dates formated as: YYYY-MM-DD to the talksport website dataframe
@@ -41,20 +41,24 @@ def replaces_ordinal_date_talksport(dataframe: pd.DataFrame, column: str) -> pd.
     Input:
       pd.DataFrame: dataframe to be replaced
       str: date column 
-
     Return:
       pd.DataFrame: formated dataframe
-
     Example:
       '2nd July 2021' -> '2021-07-02'
   '''
 
-  dataframe[column] = dataframe[column].str.replace('th', '').str.replace('st', '').str.replace('rd', '').str.replace('nd', '')
+  dataframe[column] = dataframe[column].str.replace('th', '', 1).str.replace('rd', '', 1).str.replace('nd', '', 1)
+
+  # special cases when for ex.: 31st August 2021 and 28th August 2021 
+  dataframe[column] = dataframe[column].apply(lambda x: x.split(' ')[0].replace('st', '', 1) + ' ' + x.split(' ')[1] + ' ' + x.split(' ')[2])
+  
+  # converts to YYYY-MM-DD
   dataframe[column] = dataframe[column].apply(lambda dataframe_date: date.isoformat(datetime.strptime(dataframe_date, '%d %B %Y').date()))
 
   return dataframe
 
-def replaces_ordinal_date_worldsoccer(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
+
+def replace_ordinal_date_worldsoccer(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
 
   '''
     Replaces ordinal dates for dates formated as: YYYY-MM-DD to the worldsoccer website dataframe
@@ -62,35 +66,13 @@ def replaces_ordinal_date_worldsoccer(dataframe: pd.DataFrame, column: str) -> p
     Input:
       pd.DataFrame: dataframe to be replaced
       str: date column 
-
     Return:
       pd.DataFrame: formated dataframe
-
     Example:
       'July 2, 2021' -> '2021-07-02'
   '''
 
   dataframe[column] = dataframe[column].apply(lambda dataframe_date: date.isoformat(datetime.strptime(dataframe_date, '%B %d, %Y').date()))
-
-  return dataframe
-
-def replaces_date_thesun(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
-
-  '''
-    Replaces dates for dates formated as: YYYY-MM-DD to the thesun website dataframe
-  
-    Input:
-      pd.DataFrame: dataframe to be replaced
-      str: date column 
-
-    Return:
-      pd.DataFrame: formated dataframe
-
-    Example:
-      '2 Dec 2021' -> '2021-12-02'
-  '''
-
-  dataframe[column] = dataframe[column].apply(lambda dataframe_date: date.isoformat(datetime.strptime(dataframe_date, '%d %b %Y').date()))
 
   return dataframe
 
