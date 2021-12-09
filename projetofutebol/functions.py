@@ -94,7 +94,7 @@ def replaces_date_thesun(dataframe: pd.DataFrame, column: str) -> pd.DataFrame:
 
   return dataframe
 
-def change_team_name(dataframe: pd.DataFrame) -> pd.DataFrame:
+def change_team_name(df: pd.DataFrame) -> pd.DataFrame:
 
   '''
   Changes teams names 
@@ -110,32 +110,77 @@ def change_team_name(dataframe: pd.DataFrame) -> pd.DataFrame:
     'Man City' -> 'Manchester City'
   '''
 
-  dataframe.replace('Man United','Manchester United',inplace=True)
-  dataframe.replace('Man City','Manchester City',inplace=True)
-  dataframe.replace('West Ham','West Ham United',inplace=True)
-  dataframe.replace('Chelsea','Chelsea FC',inplace=True)
-  dataframe.replace('Liverpool','Liverpool FC',inplace=True)
-  dataframe.replace('Fulham','Fulham FC',inplace=True)
-  dataframe.replace('Burnley','Burnley FC',inplace=True)
-  dataframe.replace('Southampton','Southampton FC',inplace=True)
-  dataframe.replace('Everton','Everton FC',inplace=True)
-  dataframe.replace('Arsenal','Arsenal FC',inplace=True)
-  dataframe.replace('Newcastle','Newcastle United',inplace=True)
-  dataframe.replace('West Brom','West Bromwich Albion',inplace=True)
-  dataframe.replace('Wolves','Wolverhampton Wanderers',inplace=True)
-  dataframe.replace('Tottenham','Tottenham Hotspur',inplace=True)
-  dataframe.replace('Norwich','Norwich City',inplace=True)
-  dataframe.replace('QPR','Queens Park Rangers',inplace=True)
-  dataframe.replace('Reading','Reading FC',inplace=True)
-  dataframe.replace('Stoke','Stoke City',inplace=True)
-  dataframe.replace('Sunderland','Sunderland AFC',inplace=True)
-  dataframe.replace('Leicester','Leicester City',inplace=True)
-  dataframe.replace('Bournemouth','AFC Bournemouth',inplace=True)
-  dataframe.replace('Middlesbrough','Middlesbrough FC',inplace=True)
-  dataframe.replace('Brighton','Brighton & Hove Albion',inplace=True)
-  dataframe.replace('Huddersfield','Huddersfield Town',inplace=True)
+  df.replace('Man United','Manchester United',inplace=True)
+  df.replace('Man Utd','Manchester United',inplace=True)
+  df.replace('Man City','Manchester City',inplace=True)
+  df.replace('West Ham','West Ham United',inplace=True)
+  df.replace('Leeds','Leeds United',inplace=True)
+  df.replace('Leeds Utd','Leeds United',inplace=True)
+  df.replace('Chelsea','Chelsea FC',inplace=True)
+  df.replace('Aston Villa\tSat 3pm','Aston Villa',inplace=True)
 
-  return dataframe
+  df.replace('Liverpool','Liverpool FC',inplace=True)
+  df.replace('Fulham','Fulham FC',inplace=True)
+  df.replace('Burnley','Burnley FC',inplace=True)
+  df.replace('Southampton','Southampton FC',inplace=True)
+  df.replace('Everton','Everton FC',inplace=True)
+  df.replace('Arsenal','Arsenal FC',inplace=True)
+  df.replace('Newcastle','Newcastle United',inplace=True)
+  df.replace('West Brom','West Bromwich Albion',inplace=True)
+  df.replace('Wolves','Wolverhampton Wanderers',inplace=True)
+  df.replace('Tottenham','Tottenham Hotspur',inplace=True)
+  df.replace('Spurs','Tottenham Hotspur',inplace=True)
+  df.replace('Norwich','Norwich City',inplace=True)
+  df.replace('QPR','Queens Park Rangers',inplace=True)
+  df.replace('Reading','Reading FC',inplace=True)
+  df.replace('Stoke','Stoke City',inplace=True)
+  df.replace('Sunderland','Sunderland AFC',inplace=True)
+  df.replace('Leicester','Leicester City',inplace=True)
+  df.replace('Bournemouth','AFC Bournemouth',inplace=True)
+  df.replace('Middlesbrough','Middlesbrough FC',inplace=True)
+  df.replace('Brighton','Brighton & Hove Albion',inplace=True)
+  df.replace('Huddersfield','Huddersfield Town',inplace=True)
+  df.replace('Blackburn','Blackburn Rovers',inplace=True)
+  df.replace('Birmingham','Birmingham City',inplace=True)
+  df.replace('Bolton','Bolton Wanderers',inplace=True)
+  df.replace('Bradford','Bradford City',inplace=True)
+  df.replace('Tottenham Hostpur', 'Tottenham Hotspur', inplace = True)
+  df.replace('Derby', 'Derby County', inplace = True)
+  df.replace('Cardiff', 'Cardiff City', inplace = True)
+  df.replace('Hull', 'Hull City', inplace = True)
+  df.replace('Newcastle Utd', 'Newcastle United', inplace = True)
+  df.replace('Sheff Wed', 'Sheffield Wednesday FC', inplace = True)
+  df.replace('Sheffield Wednesday', 'Sheffield Wednesday FC', inplace = True)
+  df.replace('Squad sheets Queens Park Rangers', 'Queens Park Rangers', inplace = True)
+  df.replace('Swansea', 'Swansea City', inplace = True)
+  df.replace('West Bromwich', 'West Bromwich Albion', inplace = True)
+  df.replace('Blackburn Rovers\tSat 3pm', 'Blackburn Rovers'  , inplace = True)
+  df.replace('Bolton Wanderers\tSat 3pm','Bolton Wanderers' , inplace = True)
+  df.replace('Charlton','Charlton Athletic' , inplace = True)
+  df.replace('Chelsea\tSat 5.30pm', 'Chelsea FC' , inplace = True)
+  df.replace('Coventry', 'Coventry City', inplace = True)
+
+  df.replace('Everton \tSat 3pm', 'Everton FC', inplace = True)
+  df.replace('Holland team news', 'Holland', inplace = True)
+  df.replace('Ipswich Town', 'Ipswich', inplace = True)
+  df.replace('Italy team news', 'Italy', inplace = True)
+  df.replace('Manchester United\tSunday 4pm', 'Manchester United', inplace = True)
+  df.replace('Manchester city', 'Manchester City', inplace = True)
+
+  df.replace('New Zealand team news','New Zealand', inplace = True)
+  df.replace('Notts County | Sunday 3pm', 'Notts County', inplace = True)
+  df.replace('Portsmouth\tSunday 1.30pm', 'Portsmouth', inplace = True)
+  df.replace('Sheffield Wednesday', 'Sheffield Wednesday FC', inplace = True)
+  df.replace('Stoke City\tMonday 8pm', 'Stoke City', inplace = True)
+  df.replace('Tottenham Hotpsur', 'Tottenham Hotspur', inplace = True)
+  df.replace('Tottenham Hotspur\tSaturday 3pm', 'Tottenham Hotspur', inplace = True)
+  df.replace( 'West Bromwich albion',  'West Bromwich Albion', inplace = True)
+  df.replace('Wolverhampton Wanderers\tSat 3pm', 'Wolverhampton Wanderers', inplace = True)
+  df.replace('MK Dons', 'Milton Keynes Dons', inplace = True)
+  df.replace('Wigan', 'Wigan Athletic', inplace = True)
+  
+  return df
+
 
 
 
