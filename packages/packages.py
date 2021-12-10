@@ -3,6 +3,11 @@ import ftfy
 import gensim
 import matplotlib.pyplot as plt
 import nltk
+from nltk import word_tokenize
+from nltk.corpus import stopwords
+nltk.download('punkt')
+nltk.download('english')
+nltk.download('stopwords')
 import numpy as np
 import pandas as pd
 import pickle
@@ -18,6 +23,11 @@ import requests
 from bs4 import BeautifulSoup
 import dateutil.parser
 from google.colab import drive, files
+import string
+import regex as re
+from ftfy import fix_text
+import pattern
+from pattern.en import lemma, lexeme
 
 from tqdm import tqdm
 import unidecode
