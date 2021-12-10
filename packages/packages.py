@@ -37,9 +37,6 @@ import xgboost as xgb
 
 from gensim.models import KeyedVectors, Word2Vec
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
-from gensim.models.phrases import Phrases, Phraser
-from gensim.similarities.index import AnnoyIndexer
-from gensim.test.utils import common_texts
 
 from IPython.display import SVG, clear_output
 from itertools import product
@@ -57,10 +54,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression
 
-import torch
-import torch.nn as nn
-import torch.utils.data as tdata
-import torch.optim as optim
 import transformers
 from transformers import AutoModel, AutoTokenizer, AutoConfig
 from transformers import BertForMaskedLM, BertModel, BertTokenizer
