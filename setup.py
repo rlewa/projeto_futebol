@@ -18,5 +18,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=['ftfy','wget', 'numpy', 'pandas', 'sklearn', 'nltk', 'pattern']
+    install_requires=['ftfy','wget', 'numpy', 'pandas', 'sklearn', 'nltk', 'pattern', 'unidecode', 'gensim', 'tensorflow', 'transformers']
 ) 
