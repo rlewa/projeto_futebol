@@ -48,8 +48,7 @@ from tensorflow.keras.layers import Input, Flatten, LSTM, Conv1D, Dense, TimeDis
 from tensorflow.keras.models import Model, load_model, Sequential
 
 import sklearn
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, log_loss, precision_score
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
