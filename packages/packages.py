@@ -1,10 +1,12 @@
 import numpy as np
 import pandas as pd
 import scipy
+from scipy.stats import uniform
 import pickle
 import random
 from random import choice
 import seaborn as sns
+from sns import heatmap
 import matplotlib.pyplot as plt
 
 import copy
@@ -46,12 +48,15 @@ from tensorflow.keras.layers import Input, Flatten, LSTM, Conv1D, Dense, TimeDis
 from tensorflow.keras.models import Model, load_model, Sequential
 
 import sklearn
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler
+from sklearn.model_selection import RandomizedSearchCV 
+from sklearn.pipeline import Pipeline
 
 import transformers
 from transformers import AutoModel, AutoTokenizer, AutoConfig
