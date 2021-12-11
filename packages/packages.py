@@ -35,6 +35,7 @@ import unidecode
 import re
 
 import xgboost as xgb
+from xgboost import XGBClassifier
 
 import gensim
 from gensim.models import KeyedVectors, Word2Vec
@@ -53,6 +54,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler
 from sklearn.model_selection import RandomizedSearchCV 
 from sklearn.pipeline import Pipeline
