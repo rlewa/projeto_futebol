@@ -6,7 +6,7 @@ import pickle
 import random
 from random import choice
 import seaborn as sns
-from sns import heatmap
+from seaborn import heatmap
 import matplotlib.pyplot as plt
 
 import copy
