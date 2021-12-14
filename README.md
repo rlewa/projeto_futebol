@@ -83,17 +83,15 @@ For each .csv file, we created more statistics using the features above and code
 **DiffFormPts** | Diferença do total de pontos acumulados da casa e do time de fora
 **DiffLP** | Diferença da posição do time da casa e do time de fora 
 
- After creating these features, we performed standardization for the date to the 'YYYY-MM-DD' format, the teams names as presented here[]() and the real-valued features. The dataframes are then concatenated and we have the historical features with shape of 7980 rows and 74 columns.
-
-
+ After creating these features, we performed standardization for the date to the 'YYYY-MM-DD' format, the teams names as presented [here](https://github.com/rlewa/projetofutebol/blob/main/teams_names.txt) and the real-valued features. The dataframes are then concatenated and we have the historical features with shape of 7980 rows and 74 columns.
+ 
 -------------------------
 
-## Data Standardization:
+<a name="1.2"></a>
+### 1.2\. News
 
-We consider a clean dataframe (.csv file) if its column 'Date' is formated as: 'YYYY-MM-DD'; And both for home and away teams, their names must not be abbreviated. For ex.: 'Man Utd' goes to 'Manchester United'.
+For this part, we scraped 5 different websites and organized each news in its 'scraping folder', which is available [here](https://drive.google.com/drive/folders/1uV19ijSbIy_QtroAnqdsImBHEQDYJAqz?usp=sharing). Each scraping has its specific details, such as different codes to get this data and ways to treat it.   
 
-Dataframe with historical features (```historical_features``` file) = (7980, 46)
-
-
+-------------------------
 
 It can be used to develop more sophisticated techniques of predicting results as we pre-trained NLP models using news from many websites to many football championships around the world.
