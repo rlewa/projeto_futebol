@@ -28,7 +28,10 @@ from bs4 import BeautifulSoup
 
 import dateutil.parser
 import time
+import datetime
 from datetime import datetime, date
+from datetime import timedelta
+
 
 from tqdm import tqdm
 import unidecode
