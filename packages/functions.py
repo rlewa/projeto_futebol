@@ -66,13 +66,10 @@ def change_team_name(df: pd.DataFrame) -> pd.DataFrame:
 
   '''
   Changes teams names 
-
   Input:
     pd.Dataframe: dataframe to be changed
-
   Return 
     pd.DataFrame: new dataframe with names changed
-
   Example:
     'Man Utd' -> 'Manchester United'
     'Man City' -> 'Manchester City'
@@ -154,16 +151,14 @@ def cleanhtml(raw_html):
 
   '''
     Remove usual stopwords and specif ones
-
     Input:
       str: raw string
-
     Return:
       np.array: array with clean string (no stopwords)
   '''
 
   cleanr = re.compile('<.*?>')
-  cleantext = re.sub(cleanr, '', raw_html)
+  cleantext = re.sub(cleanr, ' ', raw_html)
   
   return cleantext
 
@@ -171,10 +166,8 @@ def remove_stopwords(raw_string: str) -> np.array:
 
   '''
     Remove usual stopwords and specif ones
-
     Input:
       str: raw string
-
     Return:
       np.array: array with clean string (no stopwords)
   '''
@@ -216,6 +209,7 @@ def remove_stopwords(raw_string: str) -> np.array:
   stop_words.append('getty')
   stop_words.append('image')
 
+  raw_string = raw_string.split(' ')
   split_string = [str(each_raw_string) for each_raw_string in raw_string if not each_raw_string in stop_words]
   clean_string = " ".join(split_string)
   clean_strings = np.append(clean_strings, clean_string)
@@ -231,21 +225,20 @@ def remove_emoji(string):
                            u"\U00002702-\U000027B0"
                            u"\U000024C2-\U0001F251"
                            "]+", flags=re.UNICODE)
-    return emoji_pattern.sub(r'', string)
+    return emoji_pattern.sub(r' ', string)
 
 def clean_text(text: str) -> str:
     '''
       Cleans and replaces all the following patterns for specified characters
-
       Input:
       str: text
-
       Return:
       str: clean text
     '''
 
     text = text.lower()
-    text = text.translate(str.maketrans('', '', string.punctuation))
+    text = text.replace('.', ' ')
+    text = text.translate(str.maketrans(' ', ' ', string.punctuation))
     text = fix_text(text)
     text = remove_emoji(text)
     text = cleanhtml(text)    
@@ -256,6 +249,7 @@ def clean_text(text: str) -> str:
     text = re.sub(r"n\'t", " 't ", text)
     text = re.sub(r"\'re", " 're ", text)
     text = re.sub(r"\'d", " 'd ", text)
+    #print(text)
     text = text.replace('open new windowclick', ' ')
     text = text.replace('windowclick', ' ')
     text = text.replace('whatsapp', ' ')
@@ -263,8 +257,10 @@ def clean_text(text: str) -> str:
     text = text.replace('twitter', ' ')
     text = re.sub(r"\'ll", " 'll ", text)
     text = re.sub(r"'", "", text)
-    text = text.replace("[math]23^{24}[/math]", "")
+    text = text.replace("[math]23^{24}[/math]", " ")
     text = re.sub(r"[0-9]", " ", text)
+    text = ' '.join(re.sub("(@[A-Za-z0-9]+)|(#)|(\w+:\/\/\S+)", " ", text).split())
+    text = re.sub(r'pic.twitter.com/[\w]*'," ", text) 
     text = re.sub(r"[,.;!?#$%&@~|()*+,-./:;<=>?@[\]^_{|}~]\/\'|]\/\'", " ", text)
     text = re.sub(r"\(", " ( ", text)
     text = re.sub(r"\)", " ) ", text)
@@ -277,13 +273,10 @@ def clean_text(text: str) -> str:
     text = text.replace("‘",'')
     text = text.replace("–",' ')
     text = text.replace("-",' ')
-    text = re.sub(r' +',  ' ', text)  
-    text = ' '.join(re.sub("(@[A-Za-z0-9]+)|(#)|(\w+:\/\/\S+)", " ", text).split())
-    text = re.sub(r'pic.twitter.com/[\w]*',"", text)   
+    text = re.sub(r' +',  ' ', text)    
     text = remove_stopwords(text)[0]
     
     return text
-
   
 def get_scraping_paths(scraping: str, team: str = '*'):
 
