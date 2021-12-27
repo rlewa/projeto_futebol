@@ -150,8 +150,6 @@ def change_team_name(df: pd.DataFrame) -> pd.DataFrame:
   return df
 
 
-
-
 def cleanhtml(raw_html):
 
   '''
@@ -224,6 +222,17 @@ def remove_stopwords(raw_string: str) -> np.array:
 
   return np.array(clean_strings)
 
+def remove_emoji(string):
+    emoji_pattern = re.compile("["
+                           u"\U0001F600-\U0001F64F"  # emoticons
+                           u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                           u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                           u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                           u"\U00002702-\U000027B0"
+                           u"\U000024C2-\U0001F251"
+                           "]+", flags=re.UNICODE)
+    return emoji_pattern.sub(r'', string)
+
 def clean_text(text: str) -> str:
     '''
       Cleans and replaces all the following patterns for specified characters
@@ -238,6 +247,7 @@ def clean_text(text: str) -> str:
     text = text.lower()
     text = text.translate(str.maketrans('', '', string.punctuation))
     text = fix_text(text)
+    text = remove_emoji(text)
     text = cleanhtml(text)    
     text = text.replace('\n\t','')
     text = re.sub(' +', ' ', text)
@@ -259,7 +269,7 @@ def clean_text(text: str) -> str:
     text = re.sub(r"\(", " ( ", text)
     text = re.sub(r"\)", " ) ", text)
     text = re.sub(r"\?", " ", text)
-    text = re.sub(r'[?|$|.|£|•|!|€|°|ª|º|"|""|\']',r'',text)
+    text = re.sub(r'[?|$|.|£|•|!|…|€|°|ª|º|"|""|\']',' ',text)
     text = re.sub(r"\s{2,}", " ", text)
     text = " ".join([lemma(wd) for wd in text.split()])
     text = text.replace("’",'')
@@ -267,17 +277,47 @@ def clean_text(text: str) -> str:
     text = text.replace("‘",'')
     text = text.replace("–",' ')
     text = text.replace("-",' ')
-    text = re.sub(r' +',  ' ', text)
-    text = text.split()
-
-    spec_char = ['www', '…']
-    
-    for i, j in enumerate(text):
-      for chars in spec_char:
-        if chars in j:
-          del text[i]
-    
+    text = re.sub(r' +',  ' ', text)  
+    text = ' '.join(re.sub("(@[A-Za-z0-9]+)|(#)|(\w+:\/\/\S+)", " ", text).split())
+    text = re.sub(r'pic.twitter.com/[\w]*',"", text)   
     text = remove_stopwords(text)[0]
-
-
+    
     return text
+
+  
+def get_scraping_paths(scraping: str, team: str = '*'):
+
+  '''
+    Gets all paths to where the WorldSoccer website data is and creates a dataframe with this data
+
+    Input:
+      scraping: string ('Scraping1', 'Scraping2', 'Scraping3', 'Scraping4', 'Scraping5'). 
+      team: string, which by default is '*' (all available teams). 'Scraping2', 'Scraping3', 'Scraping4' must have team = '*'
+    
+    Return:
+      df1: dataframe with 2 columns: 'date' and 'text' for all available news 
+  '''
+
+
+  if scraping.lower().strip() == 'scraping2' or scraping.lower() == 'scraping3' or scraping.lower() == 'scraping4':
+    team = '*'
+
+  scraping = scraping.capitalize()
+  scraping_paths = np.array([])   
+  for path in glob.glob(f'/content/drive/MyDrive/GitHub/Dados/Noticias/{scraping}/{team}.csv'):
+    scraping_paths = np.append(scraping_paths, path)
+
+  df1 = pd.read_csv(scraping_paths[0], encoding = 'UTF-8', usecols = ['date', 'text'])
+
+  for i in range(1, len(scraping_paths)):
+    df2 = pd.read_csv(scraping_paths[i], encoding = 'UTF-8', usecols = ['date', 'text'])
+    df1 = pd.concat([df1, df2], axis = 0, ignore_index = True)  
+
+  df1.drop_duplicates(inplace = True)
+  
+  # selects news with more than 150 chars to avoid 'empty' news
+  df1 = df1.loc[df1['text'].str.len() > 150]
+  df1.reset_index(inplace = True, drop = True)
+
+
+  return df1
