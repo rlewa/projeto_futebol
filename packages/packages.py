@@ -44,6 +44,9 @@ from xgboost import XGBClassifier
 import gensim
 from gensim.models import KeyedVectors, Word2Vec
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
+from gensim.test.utils import datapath
+from gensim import utils
+import gensim.models
 
 import tensorflow as tf
 import tensorflow
