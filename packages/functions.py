@@ -297,7 +297,7 @@ def get_scraping_paths(scraping: str, team: str = '*'):
 
   scraping = scraping.capitalize()
   scraping_paths = np.array([])   
-  for path in glob.glob(f'/content/drive/MyDrive/GitHub/Dados/Noticias/{scraping}/{team}.csv'):
+  for path in glob.glob(f'/content/drive/MyDrive/GitHub/Dados/Noticias/clean_data/{scraping}/{team}.csv'):
     scraping_paths = np.append(scraping_paths, path)
 
   df1 = pd.read_csv(scraping_paths[0], encoding = 'UTF-8', usecols = ['date', 'text'])
