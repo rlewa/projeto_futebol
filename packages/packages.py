@@ -62,7 +62,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler, scale
 from sklearn.model_selection import RandomizedSearchCV 
 from sklearn.pipeline import Pipeline
 
